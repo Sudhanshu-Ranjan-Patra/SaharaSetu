@@ -71,9 +71,6 @@ body {
     width: 100%;
     z-index: 1000;
     background: linear-gradient(135deg, rgba(44, 62, 80, 0.98) 0%, rgba(52, 73, 94, 0.98) 100%);
-    -webkit-backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     transition: all var(--transition-speed);
@@ -139,6 +136,7 @@ body {
     font-weight: 700;
     background: linear-gradient(to right, #fff, #e0e0e0);
     -webkit-background-clip: text;
+    background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
     text-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
@@ -220,8 +218,7 @@ body {
     left: 0;
     min-width: 220px;
     background: rgba(255, 255, 255, 0.98);
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
+   
     border-radius: var(--border-radius);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
     opacity: 0;
@@ -795,7 +792,7 @@ body {
 
 .btn-secondary {
     background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
+   
     border: 1px solid rgba(255, 255, 255, 0.2);
     color: var(--text-primary);
 }
@@ -853,7 +850,7 @@ body {
     align-items: center;
     justify-content: center;
     background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
+   
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 0.5rem;
     color: white;
@@ -878,7 +875,7 @@ body {
     left: 1.5rem;
     z-index: 2;
     background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
+   
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 0.5rem;
     padding: 1rem;
@@ -979,7 +976,7 @@ body {
     padding: 1rem;
     border-radius: 0.5rem;
     background: rgba(30, 41, 59, 0.95);
-    backdrop-filter: blur(10px);
+   
     color: white;
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
@@ -1011,7 +1008,7 @@ body {
     padding: 2rem;
     border-radius: 10px;
     background-color: var(--glass-bg);
-    backdrop-filter: blur(10px);
+   
     border: 1px solid var(--glass-border);
     transition: all var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 4px 6px var(--shadow-color);
@@ -1169,7 +1166,7 @@ footer {
     height: 40px;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
+   
     border: 1px solid rgba(255, 255, 255, 0.2);
     color: var(--text-primary);
     cursor: pointer;
@@ -1260,20 +1257,20 @@ footer {
     align-items: center;
 }
 
-.refresh-btn {
-    background: none;
-    border: none;
-    color: var(--text-secondary);
-    cursor: pointer;
-    padding: 0.5rem;
-    border-radius: 50%;
-    transition: all 0.3s ease;
-}
-
-.refresh-btn:hover {
-    background: var(--bg-secondary);
-    color: var(--primary-color);
-    transform: rotate(180deg);
+.panel-controls input{
+    border: 0;
+    outline: o;
+    background: #f1f3f30b;
+    color: #555;
+    padding: 10px 25px;
+    height: 40px;
+    border-radius: 20px;
+    flex: 1;
+    margin-right: 16px;
+    font-size: 18px;
+    outline: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    transition: box-shadow 0.3s ease;
 }
 
 .time-filter, .location-filter {
@@ -1394,109 +1391,6 @@ footer {
 }
 
 /* Weather Prediction Styles */
-.prediction-content {
-    padding: 1.5rem;
-}
-
-.current-weather {
-    display: flex;
-    align-items: center;
-    margin-bottom: 2rem;
-}
-
-.weather-icon {
-    width: 4rem;
-    height: 4rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2.5rem;
-    color: var(--primary-color);
-    margin-right: 1rem;
-}
-
-.weather-info {
-    display: flex;
-    flex-direction: column;
-}
-
-.temperature {
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--text-primary);
-}
-
-.location {
-    font-size: 1rem;
-    color: var(--text-secondary);
-}
-
-.weather-chart {
-    height: 200px;
-    margin-bottom: 2rem;
-}
-
-.weather-details {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-    margin-bottom: 2rem;
-}
-
-.detail-item {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: var(--text-secondary);
-}
-
-.detail-item i {
-    color: var(--primary-color);
-}
-
-.disaster-risk h3 {
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-    color: var(--text-primary);
-}
-
-.risk-indicators {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.risk-item {
-    display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
-    align-items: center;
-    gap: 1rem;
-}
-
-.risk-label {
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-}
-
-.risk-bar {
-    height: 0.5rem;
-    background: var(--bg-secondary);
-    border-radius: 0.25rem;
-    overflow: hidden;
-}
-
-.risk-level {
-    height: 100%;
-    background: var(--primary-color);
-    border-radius: 0.25rem;
-    transition: width 1s ease;
-}
-
-.risk-value {
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-    text-align: right;
-}
 
 /* Safety Tips Styles */
 .safety-tips {
@@ -1806,13 +1700,13 @@ footer {
 
 /* Enhanced Modal Styles */
 .contribution-modal {
-    backdrop-filter: blur(10px);
+   
     background: rgba(0, 0, 0, 0.5);
 }
 
 .modal-content {
     background: var(--glass-bg);
-    backdrop-filter: blur(10px);
+   
     border: 1px solid var(--glass-border);
     box-shadow: var(--glass-shadow);
     transform: translateY(20px);
@@ -1873,4 +1767,4 @@ footer {
 
 .nav-link:hover::after {
     width: 100%;
-} 
+}

@@ -1156,3 +1156,8 @@ document.querySelectorAll('.fade-in').forEach(element => {
     element.style.opacity = '0';
     element.style.animation = 'fadeIn 0.6s ease forwards';
 }); 
+
+
+//Live Weather //
+
+       

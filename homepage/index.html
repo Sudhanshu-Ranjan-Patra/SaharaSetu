@@ -210,27 +210,7 @@
             </div>
         </section>
 
-        <section class="quick-links">
-            <h2>Quick Access</h2>
-            <div class="links-grid">
-                <a href="#alerts" class="quick-link">
-                    <i class="fas fa-bell"></i>
-                    <span>Active Alerts</span>
-                </a>
-                <a href="#resources" class="quick-link">
-                    <i class="fas fa-hospital"></i>
-                    <span>Emergency Services</span>
-                </a>
-                <a href="#safety" class="quick-link">
-                    <i class="fas fa-book-medical"></i>
-                    <span>Safety Guides</span>
-                </a>
-                <a href="#report" class="quick-link">
-                    <i class="fas fa-flag"></i>
-                    <span>Report Incident</span>
-                </a>
-            </div>
-        </section>
+        
 
         <section class="split-section">
             <div class="split-panel alert-dashboard">
@@ -289,73 +269,96 @@
                     </div>
                 </div>
             </div>
-            <div class="split-panel weather-prediction">
-                <div class="panel-header">
-                    <h2>AI Weather Prediction</h2>
-                    <div class="panel-controls">
-                        <button class="refresh-btn" title="Refresh Forecast">
-                            <i class="fas fa-sync-alt"></i>
-                        </button>
-                        <select class="location-filter">
-                            <option value="current">Current Location</option>
-                            <option value="saved">Saved Locations</option>
-                        </select>
+           <div class="split-panel weather">
+    <div class="panel-header">
+        <h2>Live Weather Updates</h2>
+        <div class="search">
+            
+        </div>
+    </div>
+    <div class="prediction-content">
+        <div class="current-weather">
+            <div class="weather-icon">
+                <img src="images/clear.png" alt="Weather Icon" />
+            </div>
+            <div class="weather-info">
+                <span class="temp">--°C</span>
+                <span class="city">City Name</span>
+            </div>
+        </div>
+        <div class="weather-chart">
+            <canvas id="weatherChart"></canvas>
+        </div>
+        <div class="weather-details">
+            <div class="detail-item">
+                <i class="fas fa-wind"></i>
+                <span class="wind">Wind: -- km/h</span>
+            </div>
+            <div class="detail-item">
+                <i class="fas fa-tint"></i>
+                <span class="humidity">Humidity: --%</span>
+            </div>
+            <div class="detail-item">
+                <i class="fas fa-compress-arrows-alt"></i>
+                <span class="pressure">Pressure: -- hPa</span>
+            </div>
+        </div>
+
+
+        
+        <div class="disaster-risk">
+            <h3>Disaster Risk Assessment</h3>
+            <div class="risk-indicators">
+                <div class="risk-item">
+                    <span class="risk-label">Flood Risk</span>
+                    <div class="risk-bar">
+                        <div class="risk-level" style="width: 30%"></div>
                     </div>
+                    <span class="risk-value">Low</span>
                 </div>
-                <div class="prediction-content">
-                    <div class="current-weather">
-                        <div class="weather-icon">
-                            <i class="fas fa-cloud-sun"></i>
-                        </div>
-                        <div class="weather-info">
-                            <span class="temperature">24°C</span>
-                            <span class="location">New York, USA</span>
-                        </div>
+                <div class="risk-item">
+                    <span class="risk-label">Fire Risk</span>
+                    <div class="risk-bar">
+                        <div class="risk-level" style="width: 60%"></div>
                     </div>
-                    <div class="weather-chart">
-                        <canvas id="weatherChart"></canvas>
-                    </div>
-                    <div class="weather-details">
-                        <div class="detail-item">
-                            <i class="fas fa-wind"></i>
-                            <span>Wind: 12 km/h</span>
-                        </div>
-                        <div class="detail-item">
-                            <i class="fas fa-tint"></i>
-                            <span>Humidity: 65%</span>
-                        </div>
-                        <div class="detail-item">
-                            <i class="fas fa-compress-arrows-alt"></i>
-                            <span>Pressure: 1015 hPa</span>
-                        </div>
-                    </div>
-                    <div class="disaster-risk">
-                        <h3>Disaster Risk Assessment</h3>
-                        <div class="risk-indicators">
-                            <div class="risk-item">
-                                <span class="risk-label">Flood Risk</span>
-                                <div class="risk-bar">
-                                    <div class="risk-level" style="width: 30%"></div>
-                                </div>
-                                <span class="risk-value">Low</span>
-                            </div>
-                            <div class="risk-item">
-                                <span class="risk-label">Fire Risk</span>
-                                <div class="risk-bar">
-                                    <div class="risk-level" style="width: 60%"></div>
-                                </div>
-                                <span class="risk-value">Moderate</span>
-                            </div>
-                            <div class="risk-item">
-                                <span class="risk-label">Storm Risk</span>
-                                <div class="risk-bar">
-                                    <div class="risk-level" style="width: 80%"></div>
-                                </div>
-                                <span class="risk-value">High</span>
-                            </div>
-                        </div>
-                    </div>
+                    <span class="risk-value">Moderate</span>
                 </div>
+                <div class="risk-item">
+                    <span class="risk-label">Storm Risk</span>
+                    <div class="risk-bar">
+                        <div class="risk-level" style="width: 80%"></div>
+                    </div>
+                    <span class="risk-value">High</span>
+                </div>
+            </div>
+        </div>
+        <div class="error" style="display: none; color: red; margin-top: 10px;">
+            Invalid city name. Please try again.
+        </div>
+    </div>
+</div>
+
+        </section>
+
+        <section class="quick-links">
+            <h2>Quick Access</h2>
+            <div class="links-grid">
+                <a href="#alerts" class="quick-link">
+                    <i class="fas fa-bell"></i>
+                    <span>Active Alerts</span>
+                </a>
+                <a href="#resources" class="quick-link">
+                    <i class="fas fa-hospital"></i>
+                    <span>Emergency Services</span>
+                </a>
+                <a href="#safety" class="quick-link">
+                    <i class="fas fa-book-medical"></i>
+                    <span>Safety Guides</span>
+                </a>
+                <a href="#report" class="quick-link">
+                    <i class="fas fa-flag"></i>
+                    <span>Report Incident</span>
+                </a>
             </div>
         </section>
 
