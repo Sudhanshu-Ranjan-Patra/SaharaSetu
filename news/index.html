@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disaster News - Disaster Alert System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="logo">
+                <a href="/">
+                    <i class="fas fa-globe-americas"></i>
+                    <span>Disaster Alert</span>
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/alerts">Alerts</a>
+                <a href="/resources">Resources</a>
+                <a href="/news" class="active">News</a>
+                <a href="/about">About</a>
+            </div>
+            <div class="nav-controls">
+                <button class="theme-toggle" aria-label="Toggle theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="user-profile">
+                    <img src="https://via.placeholder.com/32" alt="User avatar" class="avatar">
+                    <div class="dropdown-menu">
+                        <a href="/profile">Profile</a>
+                        <a href="/settings">Settings</a>
+                        <a href="/logout">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="news-main">
+        <section class="news-header">
+            <h1>Disaster News</h1>
+            <p>Stay informed with the latest news about natural disasters worldwide</p>
+        </section>
+
+        <section class="news-filters">
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search news...">
+                <button id="searchBtn"><i class="fas fa-search"></i></button>
+            </div>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All News</button>
+                <button class="filter-btn" data-filter="earthquake">Earthquakes</button>
+                <button class="filter-btn" data-filter="flood">Floods</button>
+                <button class="filter-btn" data-filter="wildfire">Wildfires</button>
+                <button class="filter-btn" data-filter="hurricane">Hurricanes</button>
+            </div>
+        </section>
+
+        <section class="news-dashboard">
+            <div class="news-grid" id="newsGrid">
+                <!-- News articles will be populated here by JavaScript -->
+                <div class="news-loading">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Loading news articles...</p>
+                </div>
+            </div>
+            <div class="news-error" id="newsError" style="display: none;">
+                <i class="fas fa-exclamation-circle"></i>
+                <p>Unable to load news articles. Please try again later.</p>
+                <button id="retryBtn" class="btn btn-primary">Retry</button>
+            </div>
+            <div class="pagination" id="pagination">
+                <!-- Pagination controls will be added here -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>Dedicated to providing real-time disaster alerts and resources to communities worldwide.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="/alerts">Alerts</a>
+                <a href="/resources">Resources</a>
+                <a href="/news">News</a>
+                <a href="/about">About</a>
+            </div>
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Disaster Alert System. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="news.js"></script>
+</body>
+</html> 

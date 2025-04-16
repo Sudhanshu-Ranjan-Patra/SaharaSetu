@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disaster Alert System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="logo">
+                <a href="/">
+                    <i class="fas fa-globe-americas"></i>
+                    <span>Disaster Alert</span>
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="/" class="active">Home</a>
+                <a href="/alerts">Alerts</a>
+                <a href="/resources">Resources</a>
+                <a href="/about">About</a>
+            </div>
+            <div class="nav-controls">
+                <button class="theme-toggle" aria-label="Toggle theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="user-profile">
+                    <img src="https://via.placeholder.com/32" alt="User avatar" class="avatar">
+                    <div class="dropdown-menu">
+                        <a href="/profile">Profile</a>
+                        <a href="/settings">Settings</a>
+                        <a href="/logout">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Global Disaster Alert System</h1>
+                <p>Real-time monitoring and alerts for natural disasters worldwide</p>
+                <div class="cta-buttons">
+                    <a href="/alerts" class="btn btn-primary">View Alerts</a>
+                    <a href="/report" class="btn btn-secondary">Report Incident</a>
+                </div>
+            </div>
+            <div id="globe-container"></div>
+        </section>
+
+        <section class="features">
+            <h2>Key Features</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <i class="fas fa-bell"></i>
+                    <h3>Real-time Alerts</h3>
+                    <p>Get instant notifications about disasters in your area</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <h3>Global Coverage</h3>
+                    <p>Monitor disasters worldwide with our interactive map</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Community Support</h3>
+                    <p>Connect with others and share resources during emergencies</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-book-medical"></i>
+                    <h3>Emergency Guides</h3>
+                    <p>Access comprehensive guides for different types of disasters</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="contribute">
+            <h2>Want to Contribute?</h2>
+            <p>Join our community of volunteers and help make a difference</p>
+            <div class="contribute-buttons">
+                <a href="/join" class="btn btn-primary">Join Us</a>
+                <button class="btn btn-secondary contribute-btn">
+                    <i class="fas fa-hands-helping"></i>
+                    Contribute Now
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>Dedicated to providing real-time disaster alerts and resources to communities worldwide.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="/alerts">Alerts</a>
+                <a href="/resources">Resources</a>
+                <a href="/about">About</a>
+                <a href="/contact">Contact</a>
+            </div>
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Disaster Alert System. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script type="module" src="globe.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 
