@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disaster Alert & Resource Tracker - Emergency Resources</title>
+    <link rel="stylesheet" href="resources.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <i class="fas fa-shield-alt"></i>
+            <span>Disaster Alert & Resource Tracker</span>
+        </div>
+        <div class="navbar-menu">
+            <a href="disasters.html">Disasters</a>
+            <a href="resources.html" class="active">Resources</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </div>
+        <div class="navbar-end">
+            <button class="theme-toggle" aria-label="Toggle dark mode">
+                <i class="fas fa-moon"></i>
+            </button>
+            <button class="notification-toggle" aria-label="View notifications">
+                <i class="fas fa-bell"></i>
+                <span class="notification-badge">3</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Location Alert Section -->
+        <section class="location-alert" id="locationAlert">
+            <div class="alert-content">
+                <i class="fas fa-exclamation-triangle"></i>
+                <div class="alert-text">
+                    <h3>Resources Available in Your Area</h3>
+                    <p>There are emergency resources available near your location. Please check the map or list below.</p>
+                </div>
+                <button class="alert-action">Get SMS Alerts</button>
+            </div>
+        </section>
+
+        <!-- Filter Section -->
+        <section class="filter-section">
+            <div class="search-container">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search resources..." id="searchInput" aria-label="Search resources">
+            </div>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All Resources</button>
+                <button class="filter-btn" data-filter="shelter">Shelters</button>
+                <button class="filter-btn" data-filter="hospital">Hospitals</button>
+                <button class="filter-btn" data-filter="food">Food Banks</button>
+                <button class="filter-btn" data-filter="water">Water Stations</button>
+                <button class="filter-btn" data-filter="evacuation">Evacuation Routes</button>
+            </div>
+            <div class="availability-filter">
+                <select id="availabilityFilter" aria-label="Filter by availability">
+                    <option value="all">All Status</option>
+                    <option value="open">Open</option>
+                    <option value="limited">Limited</option>
+                    <option value="full">Full</option>
+                </select>
+            </div>
+            <div class="shelter-type-filter">
+                <select id="shelterTypeFilter" aria-label="Filter by shelter type">
+                    <option value="all">All Shelter Types</option>
+                    <option value="government">Government Shelters</option>
+                    <option value="local">Local Shelters</option>
+                </select>
+            </div>
+        </section>
+
+        <!-- View Toggle -->
+        <div class="view-toggle">
+            <button class="view-btn active" data-view="grid">
+                <i class="fas fa-th-large"></i>
+                <span>Grid View</span>
+            </button>
+            <button class="view-btn" data-view="map">
+                <i class="fas fa-map-marked-alt"></i>
+                <span>Map View</span>
+            </button>
+        </div>
+
+        <!-- Dashboard Stats -->
+        <section class="dashboard-stats">
+            <div class="stat-card">
+                <i class="fas fa-home"></i>
+                <div class="stat-info">
+                    <h3>Active Shelters</h3>
+                    <p class="stat-value" id="activeShelters">0</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-hospital"></i>
+                <div class="stat-info">
+                    <h3>Hospitals</h3>
+                    <p class="stat-value" id="activeHospitals">0</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-utensils"></i>
+                <div class="stat-info">
+                    <h3>Food Banks</h3>
+                    <p class="stat-value" id="activeFoodBanks">0</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-tint"></i>
+                <div class="stat-info">
+                    <h3>Water Stations</h3>
+                    <p class="stat-value" id="activeWaterStations">0</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resources Grid -->
+        <section class="resources-grid" id="resourcesGrid">
+            <!-- Resource cards will be dynamically inserted here -->
+        </section>
+
+        <!-- Resources Map View (hidden by default) -->
+        <section class="resources-map" id="resourcesMap">
+            <div class="map-container">
+                <canvas id="mapCanvas"></canvas>
+            </div>
+        </section>
+
+        <!-- Emergency Numbers -->
+        <section class="emergency-numbers">
+            <h2>Emergency Numbers</h2>
+            <div class="numbers-grid">
+                <div class="number-card">
+                    <i class="fas fa-phone-alt"></i>
+                    <h3>Emergency</h3>
+                    <p>112</p>
+                </div>
+                <div class="number-card">
+                    <i class="fas fa-car-crash"></i>
+                    <h3>Police</h3>
+                    <p>100</p>
+                </div>
+                <div class="number-card">
+                    <i class="fas fa-fire-extinguisher"></i>
+                    <h3>Fire</h3>
+                    <p>101</p>
+                </div>
+                <div class="number-card">
+                    <i class="fas fa-ambulance"></i>
+                    <h3>Ambulance</h3>
+                    <p>102</p>
+                </div>
+                <div class="number-card">
+                    <i class="fas fa-helicopter"></i>
+                    <h3>Disaster</h3>
+                    <p>108</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Rescue Form -->
+        <section class="rescue-form">
+            <h2>Request Rescue</h2>
+            <form id="rescueForm">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="location">Location</label>
+                    <input type="text" id="location" required>
+                </div>
+                <div class="form-group">
+                    <label for="contact">Contact Number</label>
+                    <input type="tel" id="contact" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Submit Rescue Request</button>
+            </form>
+        </section>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Loading Indicator -->
+    <div class="loading-indicator" id="loadingIndicator">
+        <div class="spinner"></div>
+        <p>Loading resource data...</p>
+    </div>
+
+    <script src="resources.js"></script>
+</body>
+</html> 
