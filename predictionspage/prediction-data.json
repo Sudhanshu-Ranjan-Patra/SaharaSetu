@@ -1,0 +1,92 @@
+{
+    "predictions": [
+        {
+            "id": "wildfire-001",
+            "type": "wildfire",
+            "severity": "high",
+            "location": "Northern Forest Region",
+            "confidence": 87,
+            "forecast": {
+                "spread": "3.2 miles in next 24 hours",
+                "affected_areas": ["Northern Forest Region", "Adjacent Communities"],
+                "time_series": [
+                    {"day": 1, "spread": "3.2 miles", "risk_level": "high"},
+                    {"day": 2, "spread": "5.8 miles", "risk_level": "very_high"},
+                    {"day": 3, "spread": "8.5 miles", "risk_level": "extreme"}
+                ]
+            },
+            "safety_tips": [
+                "Evacuate immediately if in affected areas",
+                "Prepare emergency supplies",
+                "Stay updated with local authorities"
+            ],
+            "last_updated": "2024-03-20T10:30:00Z"
+        },
+        {
+            "id": "flood-001",
+            "type": "flood",
+            "severity": "medium",
+            "location": "Riverside Communities",
+            "confidence": 76,
+            "forecast": {
+                "water_level": "2.8 feet above normal",
+                "affected_areas": ["Riverside Communities", "Low-lying Areas"],
+                "time_series": [
+                    {"day": 1, "level": "2.8 feet", "risk_level": "medium"},
+                    {"day": 2, "level": "3.5 feet", "risk_level": "high"},
+                    {"day": 3, "level": "4.2 feet", "risk_level": "very_high"}
+                ]
+            },
+            "safety_tips": [
+                "Move to higher ground",
+                "Avoid flooded areas",
+                "Prepare sandbags if available"
+            ],
+            "last_updated": "2024-03-20T10:30:00Z"
+        },
+        {
+            "id": "storm-001",
+            "type": "storm",
+            "severity": "low",
+            "location": "Coastal Regions",
+            "confidence": 92,
+            "forecast": {
+                "intensity": "Category 1",
+                "affected_areas": ["Coastal Regions", "Nearby Islands"],
+                "time_series": [
+                    {"day": 1, "intensity": "Category 1", "risk_level": "low"},
+                    {"day": 2, "intensity": "Category 2", "risk_level": "medium"},
+                    {"day": 3, "intensity": "Category 1", "risk_level": "low"}
+                ]
+            },
+            "safety_tips": [
+                "Secure outdoor objects",
+                "Prepare emergency kit",
+                "Stay indoors during storm"
+            ],
+            "last_updated": "2024-03-20T10:30:00Z"
+        },
+        {
+            "id": "landslide-001",
+            "type": "landslide",
+            "severity": "medium",
+            "location": "Hillside Communities",
+            "confidence": 68,
+            "forecast": {
+                "stability": "Moderate",
+                "affected_areas": ["Hillside Communities", "Mountain Regions"],
+                "time_series": [
+                    {"day": 1, "stability": "Moderate", "risk_level": "medium"},
+                    {"day": 2, "stability": "Low", "risk_level": "high"},
+                    {"day": 3, "stability": "Very Low", "risk_level": "very_high"}
+                ]
+            },
+            "safety_tips": [
+                "Monitor slope stability",
+                "Prepare evacuation route",
+                "Stay away from steep slopes"
+            ],
+            "last_updated": "2024-03-20T10:30:00Z"
+        }
+    ]
+} 

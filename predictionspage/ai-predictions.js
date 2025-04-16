@@ -1,312 +1,522 @@
-// Initialize charts when the DOM is loaded
+// Global variables
+let predictionData = null;
+let updateInterval = null;
+let activeFilter = 'all';
+let isDarkMode = false;
+
+// Initialize the page
 document.addEventListener('DOMContentLoaded', () => {
-    initializeCharts();
-    setupTooltips();
-    setupInsightButtons();
+    initializeTheme();
+    loadPredictionData();
+    setupAutoRefresh();
+    setupEventListeners();
+    setupScrollAnimations();
+    setupMouseParallax();
+    setupGlobeAnimation();
 });
 
-// Initialize all charts
-function initializeCharts() {
-    createWildfireChart();
-    createFloodChart();
-    createStormChart();
-    createLandslideChart();
-    createAccuracyChart();
-}
-
-// Create wildfire prediction chart
-function createWildfireChart() {
-    const ctx = document.getElementById('wildfireChart').getContext('2d');
-    const wildfireChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: ['Today', 'Day 2', 'Day 3', 'Day 4', 'Day 5', 'Day 6', 'Day 7'],
-            datasets: [{
-                label: 'Predicted Spread (miles)',
-                data: [0, 0.8, 1.5, 2.1, 2.8, 3.2, 3.5],
-                borderColor: '#e74c3c',
-                backgroundColor: 'rgba(231, 76, 60, 0.1)',
-                tension: 0.4,
-                fill: true
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    display: false
-                },
-                tooltip: {
-                    mode: 'index',
-                    intersect: false
-                }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    title: {
-                        display: true,
-                        text: 'Spread Distance (miles)'
-                    }
-                },
-                x: {
-                    grid: {
-                        display: false
-                    }
-                }
-            }
-        }
-    });
-}
-
-// Create flood prediction chart
-function createFloodChart() {
-    const ctx = document.getElementById('floodChart').getContext('2d');
-    const floodChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Today', 'Day 2', 'Day 3', 'Day 4', 'Day 5', 'Day 6', 'Day 7'],
-            datasets: [{
-                label: 'Water Level (feet above normal)',
-                data: [0, 0.5, 1.2, 1.8, 2.3, 2.8, 3.1],
-                backgroundColor: '#3498db',
-                borderRadius: 5
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    display: false
-                },
-                tooltip: {
-                    mode: 'index',
-                    intersect: false
-                }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    title: {
-                        display: true,
-                        text: 'Water Level (feet)'
-                    }
-                },
-                x: {
-                    grid: {
-                        display: false
-                    }
-                }
-            }
-        }
-    });
-}
-
-// Create storm prediction chart
-function createStormChart() {
-    const ctx = document.getElementById('stormChart').getContext('2d');
-    const stormChart = new Chart(ctx, {
-        type: 'radar',
-        data: {
-            labels: ['Wind Speed', 'Precipitation', 'Pressure', 'Temperature', 'Humidity', 'Duration'],
-            datasets: [{
-                label: 'Storm Intensity',
-                data: [65, 75, 45, 60, 80, 70],
-                borderColor: '#9b59b6',
-                backgroundColor: 'rgba(155, 89, 182, 0.2)',
-                pointBackgroundColor: '#9b59b6',
-                pointBorderColor: '#fff',
-                pointHoverBackgroundColor: '#fff',
-                pointHoverBorderColor: '#9b59b6'
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    display: false
-                }
-            },
-            scales: {
-                r: {
-                    angleLines: {
-                        display: true
-                    },
-                    suggestedMin: 0,
-                    suggestedMax: 100
-                }
-            }
-        }
-    });
-}
-
-// Create landslide prediction chart
-function createLandslideChart() {
-    const ctx = document.getElementById('landslideChart').getContext('2d');
-    const landslideChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: ['Today', 'Day 2', 'Day 3', 'Day 4', 'Day 5', 'Day 6', 'Day 7'],
-            datasets: [{
-                label: 'Soil Stability Index',
-                data: [100, 95, 85, 75, 65, 60, 55],
-                borderColor: '#f39c12',
-                backgroundColor: 'rgba(243, 156, 18, 0.1)',
-                tension: 0.4,
-                fill: true
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    display: false
-                },
-                tooltip: {
-                    mode: 'index',
-                    intersect: false
-                }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    max: 100,
-                    title: {
-                        display: true,
-                        text: 'Stability Index (%)'
-                    }
-                },
-                x: {
-                    grid: {
-                        display: false
-                    }
-                }
-            }
-        }
-    });
-}
-
-// Create accuracy comparison chart
-function createAccuracyChart() {
-    const ctx = document.getElementById('accuracyChart').getContext('2d');
-    const accuracyChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Wildfire', 'Flood', 'Storm', 'Landslide'],
-            datasets: [{
-                label: 'Prediction Accuracy (%)',
-                data: [87, 92, 78, 65],
-                backgroundColor: [
-                    '#e74c3c',
-                    '#3498db',
-                    '#9b59b6',
-                    '#f39c12'
-                ],
-                borderRadius: 5
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    display: false
-                },
-                tooltip: {
-                    callbacks: {
-                        label: function(context) {
-                            return `Accuracy: ${context.raw}%`;
-                        }
-                    }
-                }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    max: 100,
-                    title: {
-                        display: true,
-                        text: 'Accuracy (%)'
-                    }
-                }
-            }
-        }
-    });
-}
-
-// Setup tooltips for info icons
-function setupTooltips() {
-    const infoIcons = document.querySelectorAll('.info-icon');
+// Theme management
+function initializeTheme() {
+    const themeToggle = document.getElementById('themeToggle');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     
-    infoIcons.forEach(icon => {
-        icon.addEventListener('mouseenter', (e) => {
-            const tooltip = document.createElement('div');
-            tooltip.className = 'tooltip';
-            tooltip.textContent = e.target.closest('.info-icon').getAttribute('data-tooltip');
-            
-            document.body.appendChild(tooltip);
-            
-            const rect = e.target.getBoundingClientRect();
-            tooltip.style.top = `${rect.top - tooltip.offsetHeight - 10}px`;
-            tooltip.style.left = `${rect.left + (rect.width / 2) - (tooltip.offsetWidth / 2)}px`;
-        });
+    isDarkMode = localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && prefersDark);
+    updateTheme();
+
+    themeToggle.addEventListener('click', () => {
+        isDarkMode = !isDarkMode;
+        localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+        updateTheme();
+    });
+}
+
+function updateTheme() {
+    document.documentElement.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
+    document.getElementById('themeToggle').innerHTML = isDarkMode ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+}
+
+// Load prediction data from JSON file
+async function loadPredictionData() {
+    try {
+        showLoadingState();
         
-        icon.addEventListener('mouseleave', () => {
-            const tooltip = document.querySelector('.tooltip');
-            if (tooltip) {
-                tooltip.remove();
+        const response = await fetch('prediction-data.json');
+        predictionData = await response.json();
+        
+        // Simulate network delay for demo purposes
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        
+        updateUI();
+        removeLoadingState();
+    } catch (error) {
+        console.error('Error loading prediction data:', error);
+        showError('Failed to load prediction data. Please try again later.');
+        removeLoadingState();
+    }
+}
+
+// Update the UI with prediction data
+function updateUI() {
+    if (!predictionData) return;
+
+    const predictions = predictionData.predictions;
+    
+    // Update each prediction card
+    predictions.forEach(prediction => {
+        const card = document.querySelector(`[data-prediction-id="${prediction.id}"]`);
+        if (card) {
+            updatePredictionCard(card, prediction);
+            createPredictionChart(prediction);
+        }
+    });
+
+    // Update last updated time
+    const lastUpdated = new Date(predictions[0].last_updated).toLocaleString();
+    document.querySelector('.last-updated').textContent = `Last Updated: ${lastUpdated}`;
+}
+
+// Update individual prediction card
+function updatePredictionCard(card, prediction) {
+    // Update risk level
+    const riskLevel = card.querySelector('.risk-level');
+    riskLevel.className = `risk-level ${prediction.severity}`;
+    riskLevel.querySelector('span').textContent = `${prediction.severity.charAt(0).toUpperCase() + prediction.severity.slice(1)} Risk`;
+    
+    // Update risk bar with animation
+    const riskBar = card.querySelector('.risk-bar');
+    const riskPercentage = getRiskPercentage(prediction.severity);
+    riskBar.style.width = '0';
+    setTimeout(() => {
+        riskBar.style.width = `${riskPercentage}%`;
+    }, 100);
+    
+    // Update prediction details with fade-in effect
+    const details = card.querySelector('.prediction-details');
+    details.style.opacity = '0';
+    setTimeout(() => {
+        details.innerHTML = `
+            <p><strong>${getPredictionMetric(prediction)}</strong></p>
+            <p><strong>Affected Areas:</strong> ${prediction.forecast.affected_areas.join(', ')}</p>
+            <p><strong>Confidence Level:</strong> ${prediction.confidence}%</p>
+        `;
+        details.style.opacity = '1';
+    }, 300);
+}
+
+// Create prediction chart with animation
+function createPredictionChart(prediction) {
+    const canvas = document.getElementById(`${prediction.type}Chart`);
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    const timeSeries = prediction.forecast.time_series;
+    
+    // Clear previous chart if it exists
+    if (canvas.chart) {
+        canvas.chart.destroy();
+    }
+    
+    canvas.chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: timeSeries.map(item => `Day ${item.day}`),
+            datasets: [{
+                label: getChartLabel(prediction.type),
+                data: timeSeries.map(item => getChartValue(item, prediction.type)),
+                borderColor: getChartColor(prediction.severity),
+                backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                tension: 0.4,
+                fill: true,
+                pointRadius: 0,
+                pointHoverRadius: 6,
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: getChartColor(prediction.severity),
+                pointHoverBorderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            animation: {
+                duration: 1000,
+                easing: 'easeOutQuart'
+            },
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    mode: 'index',
+                    intersect: false,
+                    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                    titleColor: '#fff',
+                    bodyColor: '#fff',
+                    borderColor: 'rgba(255, 255, 255, 0.1)',
+                    borderWidth: 1,
+                    padding: 10,
+                    displayColors: false
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    grid: {
+                        color: 'rgba(255, 255, 255, 0.1)'
+                    },
+                    ticks: {
+                        color: '#666'
+                    }
+                },
+                x: {
+                    grid: {
+                        color: 'rgba(255, 255, 255, 0.1)'
+                    },
+                    ticks: {
+                        color: '#666'
+                    }
+                }
+            }
+        }
+    });
+}
+
+// Setup auto-refresh
+function setupAutoRefresh() {
+    // Refresh data every 5 minutes
+    updateInterval = setInterval(loadPredictionData, 5 * 60 * 1000);
+}
+
+// Setup event listeners
+function setupEventListeners() {
+    // Manual refresh button
+    const refreshButton = document.querySelector('.refresh-button');
+    if (refreshButton) {
+        refreshButton.addEventListener('click', () => {
+            refreshButton.classList.add('loading');
+            loadPredictionData();
+            showToast('Data refreshed successfully');
+            setTimeout(() => {
+                refreshButton.classList.remove('loading');
+            }, 1000);
+        });
+    }
+
+    // Filter buttons
+    const filterButtons = document.querySelectorAll('.filter-button');
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const type = button.dataset.type;
+            activeFilter = type;
+            filterPredictions(type);
+            updateFilterButtons(button);
+        });
+    });
+
+    // Search input
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            filterPredictionsBySearch(searchTerm);
+        });
+    }
+
+    // Card hover effects
+    const cards = document.querySelectorAll('.prediction-card');
+    cards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            card.style.setProperty('--mouse-x', `${x}px`);
+            card.style.setProperty('--mouse-y', `${y}px`);
+        });
+    });
+
+    // View details buttons
+    const viewDetailsButtons = document.querySelectorAll('.view-details-btn');
+    viewDetailsButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const card = button.closest('.prediction-card');
+            const predictionId = card.dataset.predictionId;
+            showDetailedView(predictionId);
+        });
+    });
+}
+
+// Setup scroll animations
+function setupScrollAnimations() {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate');
             }
         });
+    }, {
+        threshold: 0.1
+    });
+
+    document.querySelectorAll('.prediction-card, .insight-card').forEach(card => {
+        observer.observe(card);
     });
 }
 
-// Setup insight buttons
-function setupInsightButtons() {
-    const insightButtons = document.querySelectorAll('.insight-btn');
-    
-    insightButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const insightTitle = button.closest('.insight-content').querySelector('h3').textContent;
-            
-            // Show a modal or alert with more detailed information
-            alert(`Detailed analysis for "${insightTitle}" would be displayed here.`);
-            
-            // In a real application, this would open a modal with detailed information
-            // or navigate to a more detailed page
-        });
+// Setup mouse parallax effect
+function setupMouseParallax() {
+    document.addEventListener('mousemove', (e) => {
+        const x = e.clientX / window.innerWidth;
+        const y = e.clientY / window.innerHeight;
+        
+        document.documentElement.style.setProperty('--parallax-x', `${x * 20}px`);
+        document.documentElement.style.setProperty('--parallax-y', `${y * 20}px`);
     });
 }
 
-// Add CSS for tooltips
-const style = document.createElement('style');
-style.textContent = `
-    .tooltip {
-        position: absolute;
-        background-color: #2c3e50;
-        color: white;
-        padding: 8px 12px;
-        border-radius: 5px;
-        font-size: 0.9rem;
-        z-index: 1000;
-        max-width: 250px;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+// Setup globe animation
+function setupGlobeAnimation() {
+    const globe = document.querySelector('.globe');
+    if (!globe) return;
+
+    let rotation = 0;
+    setInterval(() => {
+        rotation += 0.5;
+        globe.style.transform = `rotateY(${rotation}deg)`;
+    }, 50);
+}
+
+// Update filter buttons
+function updateFilterButtons(activeButton) {
+    document.querySelectorAll('.filter-button').forEach(button => {
+        button.classList.remove('active');
+    });
+    activeButton.classList.add('active');
+}
+
+// Filter predictions by type
+function filterPredictions(type) {
+    const cards = document.querySelectorAll('.prediction-card');
+    cards.forEach(card => {
+        if (type === 'all' || card.dataset.predictionType === type) {
+            card.style.display = 'block';
+            setTimeout(() => {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, 100);
+        } else {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            setTimeout(() => {
+                card.style.display = 'none';
+            }, 300);
+        }
+    });
+}
+
+// Filter predictions by search term
+function filterPredictionsBySearch(searchTerm) {
+    const cards = document.querySelectorAll('.prediction-card');
+    cards.forEach(card => {
+        const cardText = card.textContent.toLowerCase();
+        if (cardText.includes(searchTerm)) {
+            card.style.display = 'block';
+            setTimeout(() => {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, 100);
+        } else {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            setTimeout(() => {
+                card.style.display = 'none';
+            }, 300);
+        }
+    });
+}
+
+// Show detailed view
+function showDetailedView(predictionId) {
+    const prediction = predictionData.predictions.find(p => p.id === predictionId);
+    if (!prediction) return;
+
+    // Create modal
+    const modal = document.createElement('div');
+    modal.className = 'modal';
+    modal.innerHTML = `
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>${prediction.type.charAt(0).toUpperCase() + prediction.type.slice(1)} Forecast Details</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-chart">
+                    <canvas id="modalChart"></canvas>
+                </div>
+                <div class="modal-details">
+                    <h3>Forecast Data</h3>
+                    <p><strong>Severity:</strong> ${prediction.severity}</p>
+                    <p><strong>Confidence:</strong> ${prediction.confidence}%</p>
+                    <p><strong>Affected Areas:</strong> ${prediction.forecast.affected_areas.join(', ')}</p>
+                    <h3>Safety Recommendations</h3>
+                    <ul>
+                        ${prediction.forecast.safety_tips.map(tip => `<li>${tip}</li>`).join('')}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    `;
+
+    document.body.appendChild(modal);
+    modal.style.opacity = '0';
+    setTimeout(() => {
+        modal.style.opacity = '1';
+    }, 10);
+
+    // Create detailed chart
+    const ctx = document.getElementById('modalChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: prediction.forecast.time_series.map(item => `Day ${item.day}`),
+            datasets: [{
+                label: getChartLabel(prediction.type),
+                data: prediction.forecast.time_series.map(item => getChartValue(item, prediction.type)),
+                borderColor: getChartColor(prediction.severity),
+                backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                tension: 0.4,
+                fill: true
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: true
+                }
+            }
+        }
+    });
+
+    // Close modal
+    const closeButton = modal.querySelector('.close-modal');
+    closeButton.addEventListener('click', () => {
+        modal.style.opacity = '0';
+        setTimeout(() => {
+            modal.remove();
+        }, 300);
+    });
+}
+
+// Show loading state
+function showLoadingState() {
+    document.querySelectorAll('.prediction-card').forEach(card => {
+        card.classList.add('loading');
+    });
+}
+
+// Remove loading state
+function removeLoadingState() {
+    document.querySelectorAll('.prediction-card').forEach(card => {
+        card.classList.remove('loading');
+    });
+}
+
+// Show error message
+function showError(message) {
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'error-message';
+    errorDiv.textContent = message;
+    document.body.appendChild(errorDiv);
+    setTimeout(() => errorDiv.remove(), 5000);
+}
+
+// Show toast notification
+function showToast(message) {
+    const toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 3000);
+}
+
+// Cleanup on page unload
+window.addEventListener('beforeunload', () => {
+    if (updateInterval) {
+        clearInterval(updateInterval);
     }
-    
-    .tooltip::after {
-        content: '';
-        position: absolute;
-        bottom: -5px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 0;
-        height: 0;
-        border-left: 5px solid transparent;
-        border-right: 5px solid transparent;
-        border-top: 5px solid #2c3e50;
+});
+
+// Helper functions
+function getRiskPercentage(severity) {
+    const riskLevels = {
+        'low': 30,
+        'medium': 60,
+        'high': 85,
+        'very_high': 95,
+        'extreme': 100
+    };
+    return riskLevels[severity] || 50;
+}
+
+function getPredictionMetric(prediction) {
+    switch (prediction.type) {
+        case 'wildfire':
+            return `Predicted Spread: ${prediction.forecast.spread}`;
+        case 'flood':
+            return `Predicted Water Level: ${prediction.forecast.water_level}`;
+        case 'storm':
+            return `Predicted Intensity: ${prediction.forecast.intensity}`;
+        case 'landslide':
+            return `Predicted Stability: ${prediction.forecast.stability}`;
+        default:
+            return '';
     }
-`;
-document.head.appendChild(style); 
+}
+
+function getChartLabel(type) {
+    const labels = {
+        'wildfire': 'Spread (miles)',
+        'flood': 'Water Level (feet)',
+        'storm': 'Intensity (Category)',
+        'landslide': 'Stability Index'
+    };
+    return labels[type] || '';
+}
+
+function getChartValue(item, type) {
+    switch (type) {
+        case 'wildfire':
+            return parseFloat(item.spread);
+        case 'flood':
+            return parseFloat(item.level);
+        case 'storm':
+            return parseInt(item.intensity.replace('Category ', ''));
+        case 'landslide':
+            return getStabilityValue(item.stability);
+        default:
+            return 0;
+    }
+}
+
+function getStabilityValue(stability) {
+    const values = {
+        'Very Low': 1,
+        'Low': 2,
+        'Moderate': 3,
+        'High': 4,
+        'Very High': 5
+    };
+    return values[stability] || 3;
+}
+
+function getChartColor(severity) {
+    const colors = {
+        'low': '#2ecc71',
+        'medium': '#f1c40f',
+        'high': '#e67e22',
+        'very_high': '#e74c3c',
+        'extreme': '#c0392b'
+    };
+    return colors[severity] || '#3498db';
+} 
