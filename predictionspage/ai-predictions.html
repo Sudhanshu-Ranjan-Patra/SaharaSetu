@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Predictions & Insights - Disaster Management System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="ai-predictions.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <nav class="main-nav">
+            <div class="logo">
+                <h1>DisasterAlert</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="disasters.html">Alerts</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="ai-predictions.html" class="active">AI Predictions</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="#report">Report Incident</a></li>
+                <li><a href="#safety">Safety Tips</a></li>
+                <li><a href="#news">News</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main class="ai-predictions-main">
+        <section class="ai-predictions-header">
+            <h1>AI Predictions & Insights</h1>
+            <p>Advanced forecasting and analysis powered by artificial intelligence</p>
+        </section>
+
+        <section class="ai-explanation">
+            <div class="ai-info-card">
+                <div class="ai-info-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <div class="ai-info-content">
+                    <h2>How Our AI Works</h2>
+                    <p>Our disaster prediction system uses machine learning algorithms trained on historical disaster data, weather patterns, and environmental factors to forecast potential disasters and their impacts. The AI continuously learns from new data to improve its accuracy.</p>
+                    <div class="ai-features">
+                        <div class="ai-feature">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Pattern Recognition</span>
+                        </div>
+                        <div class="ai-feature">
+                            <i class="fas fa-cloud-sun-rain"></i>
+                            <span>Weather Analysis</span>
+                        </div>
+                        <div class="ai-feature">
+                            <i class="fas fa-map-marked-alt"></i>
+                            <span>Geographic Mapping</span>
+                        </div>
+                        <div class="ai-feature">
+                            <i class="fas fa-history"></i>
+                            <span>Historical Data</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="disaster-predictions">
+            <h2>Disaster Predictions</h2>
+            <div class="prediction-cards">
+                <div class="prediction-card">
+                    <div class="prediction-header">
+                        <i class="fas fa-fire"></i>
+                        <h3>Wildfire Risk</h3>
+                        <div class="info-icon" data-tooltip="Based on temperature, humidity, wind speed, and vegetation data">
+                            <i class="fas fa-info-circle"></i>
+                        </div>
+                    </div>
+                    <div class="prediction-content">
+                        <div class="risk-meter">
+                            <div class="risk-level high">
+                                <span>High Risk</span>
+                                <div class="risk-bar" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="prediction-details">
+                            <p><strong>Predicted Spread:</strong> 3.2 miles in next 24 hours</p>
+                            <p><strong>Affected Areas:</strong> Northern Forest Region</p>
+                            <p><strong>Confidence Level:</strong> 87%</p>
+                        </div>
+                        <div class="prediction-chart">
+                            <canvas id="wildfireChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="prediction-card">
+                    <div class="prediction-header">
+                        <i class="fas fa-water"></i>
+                        <h3>Flood Risk</h3>
+                        <div class="info-icon" data-tooltip="Based on rainfall, river levels, and soil saturation">
+                            <i class="fas fa-info-circle"></i>
+                        </div>
+                    </div>
+                    <div class="prediction-content">
+                        <div class="risk-meter">
+                            <div class="risk-level medium">
+                                <span>Medium Risk</span>
+                                <div class="risk-bar" style="width: 65%"></div>
+                            </div>
+                        </div>
+                        <div class="prediction-details">
+                            <p><strong>Predicted Water Level:</strong> 2.8 feet above normal</p>
+                            <p><strong>Affected Areas:</strong> Riverside Communities</p>
+                            <p><strong>Confidence Level:</strong> 76%</p>
+                        </div>
+                        <div class="prediction-chart">
+                            <canvas id="floodChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="prediction-card">
+                    <div class="prediction-header">
+                        <i class="fas fa-wind"></i>
+                        <h3>Storm Prediction</h3>
+                        <div class="info-icon" data-tooltip="Based on atmospheric pressure, wind patterns, and temperature gradients">
+                            <i class="fas fa-info-circle"></i>
+                        </div>
+                    </div>
+                    <div class="prediction-content">
+                        <div class="risk-meter">
+                            <div class="risk-level low">
+                                <span>Low Risk</span>
+                                <div class="risk-bar" style="width: 30%"></div>
+                            </div>
+                        </div>
+                        <div class="prediction-details">
+                            <p><strong>Predicted Intensity:</strong> Category 1</p>
+                            <p><strong>Affected Areas:</strong> Coastal Regions</p>
+                            <p><strong>Confidence Level:</strong> 92%</p>
+                        </div>
+                        <div class="prediction-chart">
+                            <canvas id="stormChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="prediction-card">
+                    <div class="prediction-header">
+                        <i class="fas fa-mountain"></i>
+                        <h3>Landslide Risk</h3>
+                        <div class="info-icon" data-tooltip="Based on soil stability, rainfall, and slope analysis">
+                            <i class="fas fa-info-circle"></i>
+                        </div>
+                    </div>
+                    <div class="prediction-content">
+                        <div class="risk-meter">
+                            <div class="risk-level medium">
+                                <span>Medium Risk</span>
+                                <div class="risk-bar" style="width: 55%"></div>
+                            </div>
+                        </div>
+                        <div class="prediction-details">
+                            <p><strong>Predicted Stability:</strong> Moderate</p>
+                            <p><strong>Affected Areas:</strong> Hillside Communities</p>
+                            <p><strong>Confidence Level:</strong> 68%</p>
+                        </div>
+                        <div class="prediction-chart">
+                            <canvas id="landslideChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="ai-insights">
+            <h2>AI-Generated Insights</h2>
+            <div class="insights-container">
+                <div class="insight-card">
+                    <div class="insight-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <div class="insight-content">
+                        <h3>Early Warning Patterns</h3>
+                        <p>Our AI has identified a pattern of increased wildfire activity in the northern region during the next 30 days, with a 78% confidence level.</p>
+                        <div class="insight-action">
+                            <button class="insight-btn">View Detailed Analysis</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="insight-card">
+                    <div class="insight-icon">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <div class="insight-content">
+                        <h3>Resource Allocation</h3>
+                        <p>Based on current predictions, we recommend increasing emergency response resources in the Riverside area by 45% to prepare for potential flooding.</p>
+                        <div class="insight-action">
+                            <button class="insight-btn">View Resource Plan</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="insight-card">
+                    <div class="insight-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <div class="insight-content">
+                        <h3>Seasonal Trends</h3>
+                        <p>The AI has detected a 23% increase in storm intensity compared to historical data for this time of year, suggesting a more active hurricane season ahead.</p>
+                        <div class="insight-action">
+                            <button class="insight-btn">View Trend Analysis</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="ai-accuracy">
+            <h2>AI Model Accuracy</h2>
+            <div class="accuracy-container">
+                <div class="accuracy-chart">
+                    <canvas id="accuracyChart"></canvas>
+                </div>
+                <div class="accuracy-stats">
+                    <div class="accuracy-stat">
+                        <h3>Wildfire Predictions</h3>
+                        <div class="accuracy-bar">
+                            <div class="accuracy-fill" style="width: 87%"></div>
+                            <span>87%</span>
+                        </div>
+                    </div>
+                    <div class="accuracy-stat">
+                        <h3>Flood Predictions</h3>
+                        <div class="accuracy-bar">
+                            <div class="accuracy-fill" style="width: 92%"></div>
+                            <span>92%</span>
+                        </div>
+                    </div>
+                    <div class="accuracy-stat">
+                        <h3>Storm Predictions</h3>
+                        <div class="accuracy-bar">
+                            <div class="accuracy-fill" style="width: 78%"></div>
+                            <span>78%</span>
+                        </div>
+                    </div>
+                    <div class="accuracy-stat">
+                        <h3>Landslide Predictions</h3>
+                        <div class="accuracy-bar">
+                            <div class="accuracy-fill" style="width: 65%"></div>
+                            <span>65%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Emergency Contacts</h3>
+                <p>Emergency: 911</p>
+                <p>Disaster Hotline: 1-800-DISASTER</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#privacy">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 DisasterAlert. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="ai-predictions.js"></script>
+</body>
+</html> 
