@@ -1,0 +1,354 @@
+/* ==========================================================================
+   Navbar Styles
+   ========================================================================== */
+
+/* Base Navbar
+   ========================================================================== */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.1), 
+        rgba(255, 255, 255, 0.05)
+    );
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1rem 2rem;
+    transition: all 0.3s ease;
+}
+
+.navbar.scrolled {
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.95), 
+        rgba(255, 255, 255, 0.9)
+    );
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+/* Container
+   ========================================================================== */
+.navbar-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Brand
+   ========================================================================== */
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.navbar-brand:hover {
+    transform: scale(1.05) translateZ(20px);
+}
+
+.navbar-brand i {
+    font-size: 1.8rem;
+    background: linear-gradient(135deg, 
+        var(--primary-color), 
+        var(--accent-color)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: pulse 2s infinite;
+}
+
+/* Menu
+   ========================================================================== */
+.navbar-menu {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+/* Links
+   ========================================================================== */
+.navbar-link {
+    position: relative;
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.navbar-link::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, 
+        var(--primary-color), 
+        var(--accent-color)
+    );
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+}
+
+.navbar-link:hover::before {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.navbar-link:hover {
+    color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+.navbar-link.active {
+    color: var(--primary-color);
+    background: linear-gradient(135deg, 
+        rgba(var(--primary-rgb), 0.1), 
+        rgba(var(--accent-rgb), 0.1)
+    );
+}
+
+/* Dropdowns
+   ========================================================================== */
+.navbar-dropdown {
+    position: relative;
+}
+
+.navbar-dropdown-content {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 200px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+}
+
+.navbar-dropdown:hover .navbar-dropdown-content {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.navbar-dropdown-link {
+    display: block;
+    padding: 0.75rem 1rem;
+    color: var(--text-color);
+    text-decoration: none;
+    border-radius: 0.25rem;
+    transition: all 0.3s ease;
+}
+
+.navbar-dropdown-link:hover {
+    background: linear-gradient(135deg, 
+        rgba(var(--primary-rgb), 0.1), 
+        rgba(var(--accent-rgb), 0.1)
+    );
+    color: var(--primary-color);
+    transform: translateX(5px);
+}
+
+/* Actions
+   ========================================================================== */
+.navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Buttons
+   ========================================================================== */
+.navbar-button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.navbar-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, 
+        rgba(var(--primary-rgb), 0.2), 
+        rgba(var(--accent-rgb), 0.2)
+    );
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+}
+
+.navbar-button:hover::before {
+    transform: translateX(0);
+}
+
+.navbar-button-primary {
+    background: linear-gradient(135deg, 
+        var(--primary-color), 
+        var(--accent-color)
+    );
+    color: white;
+}
+
+.navbar-button-secondary {
+    background: transparent;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+/* Mobile Toggle
+   ========================================================================== */
+.navbar-mobile-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.navbar-mobile-toggle:hover {
+    color: var(--primary-color);
+    transform: scale(1.1);
+}
+
+/* Animations
+   ========================================================================== */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design
+   ========================================================================== */
+@media (max-width: 768px) {
+    .navbar-menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        padding: 2rem;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+    }
+
+    .navbar-menu.active {
+        transform: translateX(0);
+    }
+
+    .navbar-mobile-toggle {
+        display: block;
+    }
+
+    .navbar-link {
+        font-size: 1.2rem;
+    }
+
+    .navbar-dropdown-content {
+        position: static;
+        background: none;
+        box-shadow: none;
+        padding: 0;
+    }
+}
+
+/* Dark Mode
+   ========================================================================== */
+[data-theme="dark"] .navbar {
+    background: linear-gradient(135deg, 
+        rgba(0, 0, 0, 0.8), 
+        rgba(0, 0, 0, 0.7)
+    );
+}
+
+[data-theme="dark"] .navbar.scrolled {
+    background: linear-gradient(135deg, 
+        rgba(0, 0, 0, 0.95), 
+        rgba(0, 0, 0, 0.9)
+    );
+}
+
+[data-theme="dark"] .navbar-dropdown-content {
+    background: rgba(0, 0, 0, 0.95);
+}
+
+[data-theme="dark"] .navbar-link {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .navbar-link:hover {
+    color: var(--primary-color);
+}
+
+/* Accessibility
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+    .navbar,
+    .navbar-brand,
+    .navbar-link,
+    .navbar-button,
+    .navbar-dropdown-content {
+        transition: none;
+    }
+}
+
+/* High Contrast Mode
+   ========================================================================== */
+@media (forced-colors: active) {
+    .navbar {
+        border: 2px solid CanvasText;
+    }
+
+    .navbar-link,
+    .navbar-button {
+        border: 1px solid CanvasText;
+    }
+}

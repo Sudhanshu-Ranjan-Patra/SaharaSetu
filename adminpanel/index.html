@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Disaster Alert & Resource Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chart.js for analytics -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Three.js for 3D effects -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1>Admin Panel</h1>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#dashboard" class="nav-link active" data-section="dashboard">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#alerts" class="nav-link" data-section="alerts">
+                    <i class="fas fa-bell"></i>
+                    <span>Alerts</span>
+                    <span class="badge">24</span>
+                </a>
+                <a href="#shelters" class="nav-link" data-section="shelters">
+                    <i class="fas fa-home"></i>
+                    <span>Shelters</span>
+                </a>
+                <a href="#contributors" class="nav-link" data-section="contributors">
+                    <i class="fas fa-users"></i>
+                    <span>Contributors</span>
+                    <span class="badge">12</span>
+                </a>
+                <a href="#rescue" class="nav-link" data-section="rescue">
+                    <i class="fas fa-hands-helping"></i>
+                    <span>Rescue Forms</span>
+                    <span class="badge">38</span>
+                </a>
+                <a href="#tips" class="nav-link" data-section="tips">
+                    <i class="fas fa-lightbulb"></i>
+                    <span>Tips & News</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <div class="search-container">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search...">
+                </div>
+                <div class="top-bar-actions">
+                    <button class="notification-btn">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">3</span>
+                    </button>
+                    <button class="theme-toggle">🌙</button>
+                    <button class="help-btn">
+                        <i class="fas fa-question-circle"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Dashboard Section -->
+            <section class="content-section dashboard-section active">
+                <div class="section-header">
+                    <h2>Dashboard Overview</h2>
+                    <div class="date-filter">
+                        <select>
+                            <option>Last 7 days</option>
+                            <option>Last 30 days</option>
+                            <option>Last 90 days</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Active Alerts</h3>
+                            <p class="stat-value">24</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Active Shelters</h3>
+                            <p class="stat-value">156</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-user-check"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Pending Verifications</h3>
+                            <p class="stat-value">12</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-hands-helping"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Rescue Requests</h3>
+                            <p class="stat-value">38</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts -->
+                <div class="charts-grid">
+                    <div class="chart-card">
+                        <h3>Alert Statistics</h3>
+                        <canvas id="alertChart"></canvas>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Recent Activities</h3>
+                        <div class="activity-list">
+                            <div class="activity-item">
+                                <i class="fas fa-bell"></i>
+                                <div class="activity-info">
+                                    <p>New alert: Flood warning in District A</p>
+                                    <span class="activity-time">2 minutes ago</span>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <i class="fas fa-home"></i>
+                                <div class="activity-info">
+                                    <p>New shelter verified: Community Center B</p>
+                                    <span class="activity-time">15 minutes ago</span>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <i class="fas fa-hands-helping"></i>
+                                <div class="activity-info">
+                                    <p>New rescue request from Location C</p>
+                                    <span class="activity-time">1 hour ago</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Other Sections -->
+            <section class="content-section alerts-section">
+                <!-- Alerts content will be loaded dynamically -->
+            </section>
+
+            <section class="content-section shelters-section">
+                <!-- Shelters content will be loaded dynamically -->
+            </section>
+
+            <section class="content-section contributors-section">
+                <!-- Contributors content will be loaded dynamically -->
+            </section>
+
+            <section class="content-section rescue-section">
+                <!-- Rescue forms content will be loaded dynamically -->
+            </section>
+
+            <section class="content-section tips-section">
+                <!-- Tips & News content will be loaded dynamically -->
+            </section>
+        </main>
+    </div>
+
+    <!-- Toast Notifications Container -->
+    <div class="toast-container"></div>
+
+    <script src="admin.js"></script>
+</body>
+</html> 

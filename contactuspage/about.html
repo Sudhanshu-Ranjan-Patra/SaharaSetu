@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - WEBOPERS</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- GSAP for advanced animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="about.css">
+</head>
+<body>
+  
+
+    <!-- Fixed Top Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <!-- Brand Logo - Unified Brand Identity (appears only once) -->
+            <div class="brand">
+                <a href="#" class="logo" aria-label="Home">
+                    <div class="logo-icon">
+                        <i class="fas fa-cube"></i>
+                    </div>
+                    <div class="logo-text">
+                        <span class="brand-name">WEBOPERS</span>
+                        <span class="brand-tagline">Where Web Meets Power</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-btn" aria-label="Toggle Menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <!-- Navigation Links -->
+            <div class="nav-links">
+                <!-- Search Bar -->
+                <div class="search-container">
+                    <div class="search-bar">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" placeholder="Search..." class="search-input" aria-label="Search">
+                        <button class="clear-search" aria-label="Clear Search">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right Side Icons -->
+                <div class="nav-icons">
+                    <!-- Theme Toggle -->
+                    <button class="theme-toggle" aria-label="Toggle Theme" data-tooltip="Toggle Theme">
+                        <i class="fas fa-sun"></i>
+                        <i class="fas fa-moon"></i>
+                    </button>
+
+                    <!-- Notifications -->
+                    <div class="notifications">
+                        <button class="notification-btn" aria-label="Notifications" data-tooltip="Notifications">
+                            <i class="fas fa-bell"></i>
+                            <span class="notification-badge">3</span>
+                        </button>
+                        <div class="notification-dropdown">
+                            <div class="notification-header">
+                                <h3>Notifications</h3>
+                                <button class="mark-all-read">Mark all as read</button>
+                            </div>
+                            <div class="notification-list">
+                                <!-- Notification items will be dynamically added here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Profile -->
+                    <div class="profile">
+                        <button class="profile-btn" aria-label="Profile Menu" data-tooltip="Profile">
+                            <img src="https://ui-avatars.com/api/?name=John+Doe" alt="Profile" class="avatar">
+                        </button>
+                        <div class="profile-dropdown">
+                            <div class="profile-info">
+                                <img src="https://ui-avatars.com/api/?name=John+Doe" alt="Profile" class="avatar-large">
+                                <div class="user-info">
+                                    <h4>John Doe</h4>
+                                    <p>john.doe@example.com</p>
+                                </div>
+                            </div>
+                            <div class="dropdown-links">
+                                <a href="#" data-tooltip="View Profile"><i class="fas fa-user"></i> Profile</a>
+                                <a href="#" data-tooltip="Account Settings"><i class="fas fa-cog"></i> Settings</a>
+                                <a href="#" data-tooltip="Logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar Toggle Button (Mobile) -->
+    <button class="sidebar-toggle" aria-label="Toggle Sidebar" aria-expanded="false" aria-controls="sidebar">
+        <span class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </span>
+    </button>
+
+    <!-- Main Sidebar - No Brand Logo Here (unified brand identity) -->
+    <nav class="sidebar" id="sidebar" role="navigation" aria-label="Main navigation">
+        <!-- Sidebar Navigation Links -->
+        <ul class="nav-links" role="menu">
+            <li role="none">
+                <a href="/homepage/index.html" class="nav-link" role="menuitem">
+                    <i class="fas fa-home" aria-hidden="true"></i>
+                    <span>Home</span>
+                </a>
+            </li>
+            <li role="none">
+                <a href="#dashboard" class="nav-link" role="menuitem">
+                    <i class="fas fa-chart-line" aria-hidden="true"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li role="none">
+                <a href="#projects" class="nav-link" role="menuitem">
+                    <i class="fas fa-project-diagram" aria-hidden="true"></i>
+                    <span>Projects</span>
+                </a>
+            </li>
+            <li role="none">
+                <a href="#analytics" class="nav-link" role="menuitem">
+                    <i class="fas fa-chart-bar" aria-hidden="true"></i>
+                    <span>Analytics</span>
+                </a>
+            </li>
+            <li role="none">
+                <a href="/contactpage/index.html" class="nav-link active" role="menuitem" aria-current="page">
+                    <i class="fas fa-envelope" aria-hidden="true"></i>
+                    <span>Contact Us</span>
+                </a>
+            </li>
+        </ul>
+
+        <!-- Sidebar Footer -->
+        <div class="sidebar-footer">
+            <div class="user-info">
+                <img src="https://ui-avatars.com/api/?name=John+Doe" alt="Profile" class="avatar">
+                <div class="user-details">
+                    <span class="user-name">John Doe</span>
+                    <span class="user-role">Administrator</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Contact Hero Section with Parallax -->
+        <section class="contact-hero" id="contact">
+            <div class="hero-content">
+                <h1 class="hero-title">Get in Touch</h1>
+                <p class="hero-subtitle">We'd love to hear from you. Our team is always here to help.</p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">24/7</span>
+                        <span class="stat-label">Support</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">15m</span>
+                        <span class="stat-label">Response Time</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Satisfaction</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="hero-image-container">
+                    <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Contact Hero Image" class="parallax-img">
+                </div>
+                <!-- 3D Decorative Elements -->
+                <div class="hero-decoration">
+                    <div class="decoration-circle"></div>
+                    <div class="decoration-square"></div>
+                    <div class="decoration-triangle"></div>
+                    <div class="decoration-dots"></div>
+                    <div class="decoration-lines"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Form Section with Glassmorphism -->
+        <section class="contact-form-section">
+            <div class="contact-form-container">
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <div class="input-container">
+                            <i class="fas fa-user"></i>
+                            <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
+                        </div>
+                        <span class="error-message"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <div class="input-container">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                        </div>
+                        <span class="error-message"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <div class="input-container">
+                            <i class="fas fa-heading"></i>
+                            <input type="text" id="subject" name="subject" placeholder="Enter subject" required>
+                        </div>
+                        <span class="error-message"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <div class="input-container">
+                            <i class="fas fa-comment"></i>
+                            <textarea id="message" name="message" placeholder="Enter your message" required></textarea>
+                        </div>
+                        <span class="error-message"></span>
+                    </div>
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i>
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Team Section with 3D Cards -->
+        <section class="team-section">
+            <h2 class="section-title">Meet Our Team</h2>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="card-front">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Team Member 1">
+                        <h3>John Doe</h3>
+                        <p>Lead Developer</p>
+                    </div>
+                    <div class="card-back">
+                        <div class="social-links">
+                            <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="card-front">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Team Member 2">
+                        <h3>Jane Smith</h3>
+                        <p>UX Designer</p>
+                    </div>
+                    <div class="card-back">
+                        <div class="social-links">
+                            <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-dribbble"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="card-front">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Team Member 3">
+                        <h3>Mike Johnson</h3>
+                        <p>Support Lead</p>
+                    </div>
+                    <div class="card-back">
+                        <div class="social-links">
+                            <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Details Section with Glassmorphism -->
+        <section class="contact-details-section">
+            <div class="contact-info">
+                <div class="info-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Our Location</h3>
+                    <p>123 Business Street<br>New York, NY 10001</p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-phone"></i>
+                    <h3>Phone Number</h3>
+                    <p>+1 (555) 123-4567</p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email Address</h3>
+                    <p>contact@modernplatform.com</p>
+                </div>
+            </div>
+            <div class="map-container">
+                <!-- Map will be loaded here via JavaScript -->
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-cube"></i>
+                    <span>WEBOPERS</span>
+                </div>
+                <div class="footer-links">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                    <a href="faq.html">FAQ</a>
+                </div>
+                <div class="footer-social">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 WEBOPERS. All rights reserved.</p>
+            </div>
+        </footer>
+    </main>
+
+    <!-- Toast Notifications Container -->
+    <div class="toast-container"></div>
+
+    <script src="about.js"></script>
+</body>
+</html> 

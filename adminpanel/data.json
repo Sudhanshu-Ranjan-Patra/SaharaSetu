@@ -1,0 +1,149 @@
+{
+  "dashboard": {
+    "stats": {
+      "activeAlerts": 24,
+      "activeShelters": 156,
+      "pendingVerifications": 12,
+      "rescueRequests": 38
+    },
+    "chartData": {
+      "labels": ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+      "datasets": [
+        {
+          "label": "Alerts Sent",
+          "data": [65, 59, 80, 81, 56, 55]
+        }
+      ]
+    },
+    "recentActivities": [
+      {
+        "type": "alert",
+        "message": "New flood alert sent to Mumbai region",
+        "time": "2 minutes ago"
+      },
+      {
+        "type": "shelter",
+        "message": "Shelter #123 verified and approved",
+        "time": "15 minutes ago"
+      },
+      {
+        "type": "rescue",
+        "message": "New rescue request from Chennai",
+        "time": "1 hour ago"
+      },
+      {
+        "type": "news",
+        "message": "Safety tips updated for cyclone season",
+        "time": "2 hours ago"
+      }
+    ]
+  },
+  "alerts": {
+    "pending": 5,
+    "history": [
+      {
+        "id": "ALT001",
+        "type": "Flood",
+        "location": "Mumbai, Maharashtra",
+        "severity": "High",
+        "status": "Active",
+        "timestamp": "2023-06-15T10:30:00Z"
+      },
+      {
+        "id": "ALT002",
+        "type": "Earthquake",
+        "location": "Delhi, NCR",
+        "severity": "Medium",
+        "status": "Active",
+        "timestamp": "2023-06-14T15:45:00Z"
+      }
+    ]
+  },
+  "shelters": {
+    "total": 156,
+    "pending": 3,
+    "list": [
+      {
+        "id": "SHT001",
+        "name": "Community Center",
+        "location": "Mumbai, Maharashtra",
+        "capacity": 200,
+        "currentOccupancy": 150,
+        "status": "Active",
+        "lastUpdated": "2023-06-15T09:00:00Z"
+      },
+      {
+        "id": "SHT002",
+        "name": "School Gymnasium",
+        "location": "Delhi, NCR",
+        "capacity": 100,
+        "currentOccupancy": 75,
+        "status": "Active",
+        "lastUpdated": "2023-06-14T18:30:00Z"
+      }
+    ]
+  },
+  "contributors": {
+    "pending": 12,
+    "list": [
+      {
+        "id": "CONT001",
+        "name": "John Smith",
+        "location": "Mumbai, Maharashtra",
+        "role": "Shelter Manager",
+        "status": "Pending",
+        "submittedOn": "2023-06-15T08:00:00Z"
+      },
+      {
+        "id": "CONT002",
+        "name": "Jane Doe",
+        "location": "Delhi, NCR",
+        "role": "Emergency Responder",
+        "status": "Pending",
+        "submittedOn": "2023-06-14T14:30:00Z"
+      }
+    ]
+  },
+  "rescueForms": {
+    "pending": 3,
+    "list": [
+      {
+        "id": "RESC001",
+        "name": "Rajesh Kumar",
+        "location": "Mumbai, Maharashtra",
+        "contact": "+91 9876543210",
+        "situation": "Trapped in flooded area",
+        "status": "Pending",
+        "submittedOn": "2023-06-15T11:00:00Z"
+      },
+      {
+        "id": "RESC002",
+        "name": "Priya Singh",
+        "location": "Delhi, NCR",
+        "contact": "+91 9876543211",
+        "situation": "Need medical assistance",
+        "status": "Pending",
+        "submittedOn": "2023-06-14T16:45:00Z"
+      }
+    ]
+  },
+  "tipsAndNews": {
+    "total": 25,
+    "list": [
+      {
+        "id": "TIPS001",
+        "title": "Cyclone Safety Guidelines",
+        "category": "Safety Tips",
+        "status": "Published",
+        "lastUpdated": "2023-06-15T10:00:00Z"
+      },
+      {
+        "id": "TIPS002",
+        "title": "Emergency Contact Numbers",
+        "category": "Information",
+        "status": "Published",
+        "lastUpdated": "2023-06-14T15:00:00Z"
+      }
+    ]
+  }
+} 
