@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f6f8;
+            color: #333;
+        }
+
+        h2, h3 {
+            text-align: center;
+            color: #2c3e50;
+            margin-top: 20px;
+        }
+
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .top-bar {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .top-bar a {
+            color: white;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ccc;
+            text-align: left;
+        }
+
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .no-data {
+            text-align: center;
+            color: #777;
+            margin: 20px 0;
+        }
+
+        .action-link {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <div>Welcome, {{ user.name }} (Admin)</div>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </div>
+
+    <div class="container">
+        <h3>All Users</h3>
+        {% if users %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Role</th>
+                    <th>District</th>
+                    <th>State</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for u in users %}
+                <tr>
+                    <td>{{ u.name }}</td>
+                    <td>{{ u.role }}</td>
+                    <td>{{ u.district }}</td>
+                    <td>{{ u.state }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+            <p class="no-data">No users found.</p>
+        {% endif %}
+
+        <h3>All Alerts</h3>
+        {% if alerts %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Status</th>
+                    <th>Reported By</th>
+                    <th>District</th>
+                    <th>State</th>
+                    <th>Time</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for alert in alerts %}
+                <tr>
+                    <td>{{ alert.type }}</td>
+                    <td>{{ alert.status }}</td>
+                    <td>{{ alert.reported_by }}</td>
+                    <td>{{ alert.district }}</td>
+                    <td>{{ alert.state }}</td>
+                    <td>{{ alert.time }}</td>
+                    <td><a class="action-link" href="{{ url_for('delete_alert', alert_id=alert.id) }}">Delete</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+            <p class="no-data">No alerts.</p>
+        {% endif %}
+
+
+
+
+
+
+        <h3>Add New Alert</h3>
+<form action="/admin_add_alert" method="POST">
+  <label>Type:</label><br>
+  <input type="text" name="type" required><br>
+
+  <label>Description:</label><br>
+  <textarea name="description" required></textarea><br>
+
+  <label>Select State:</label><br>
+  <select name="state">
+    {% for s in states %}
+      <option value="{{ s }}">{{ s }}</option>
+    {% endfor %}
+  </select><br>
+
+  <label>Select District:</label><br>
+  <select name="district">
+    {% for d in districts %}
+      <option value="{{ d }}">{{ d }}</option>
+    {% endfor %}
+  </select><br>
+
+  <label>
+    <input type="checkbox" name="broadcast"> Send to all users (override location)
+  </label><br>
+
+  <button type="submit">Add Alert</button>
+</form>
+
+
+
+
+
+
+
+
+
+    </div>
+</body>
+</html>

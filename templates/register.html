@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+    <script>
+        function toggleManualLocation() {
+            const manualFields = document.getElementById('manual-location');
+            //manualFields.style.display = document.getElementById('manualCheck').checked ? 'block' : 'none';
+        }
+    </script>
+</head>
+<body>
+    <h2>Register</h2>
+    <form method="POST">
+        <input type="text" name="name" placeholder="Full Name" required><br>
+        <input type="email" name="email" placeholder="Email" required><br>
+        <input type="text" name="phone" placeholder="Phone" required><br>
+        <input type="password" name="password" placeholder="Password" required><br>
+        <input type="number" name="pinCode" placeholder="Pin Code" required><br>
+        <label>Sign up as:</label>
+        <select name="role" required>
+            <option value="public">Public</option>
+            <option value="authority">Authority</option>
+            <option value="admin">Admin</option>
+        </select><br>
+
+        <input type="checkbox" id="manualCheck" onclick="toggleManualLocation()">
+        <label>Enter Location Manually</label><br>
+
+        <div id="manual-location" style="display:none;">
+            <input type="text" name="district_manual" placeholder="District"><br>
+            <input type="text" name="state_manual" placeholder="State"><br>
+            <input type="text" name="country_manual" placeholder="Country"><br>
+        </div>
+
+        <button type="submit">Register</button>
+    </form>
+</body>
+</html>

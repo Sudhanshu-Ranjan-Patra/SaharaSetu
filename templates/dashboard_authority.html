@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Authority Dashboard</title>
+</head>
+<body>
+    <h2>Welcome, {{ user.name }} (Authority)</h2>
+    <a href="{{ url_for('logout') }}">Logout</a>
+
+    <h3>Pending Alerts for Approval ({{ user.district }})</h3>
+    {% for alert in pending_alerts %}
+        <div style="border: 1px solid black; margin: 10px;">
+            <strong>Type:</strong> {{ alert.type }}<br>
+            <strong>Description:</strong> {{ alert.description }}<br>
+            <a href="{{ url_for('approve_alert', alert_id=alert.id) }}">Approve</a>
+        </div>
+    {% else %}
+        <p>No pending alerts.</p>
+    {% endfor %}
+
+    <h3>Add Shelter</h3>
+    <form method="POST" action="{{ url_for('add_shelter') }}">
+        <input type="text" name="name" placeholder="Shelter Name" required>
+        <input type="number" name="seats" placeholder="Available Seats" required>
+        <input type="text" name="food" placeholder="Food Available" required>
+        <input type="text" name="aid" placeholder="Medical Aid" required>
+        <button type="submit">Add Shelter</button>
+    </form>
+
+    <h3>Existing Shelters in {{ user.district }}</h3>
+    {% for shelter in shelters %}
+        <div>
+            <strong>Name:</strong> {{ shelter.name }}<br>
+            <strong>Seats:</strong> {{ shelter.seats }} | Food: {{ shelter.food }} | Aid: {{ shelter.aid }}
+        </div>
+    {% else %}
+        <p>No shelters available.</p>
+    {% endfor %}
+
+    <h3>Rescue Requests</h3>
+    {% for rescue in rescues %}
+        <div>
+            <strong>Location:</strong> {{ rescue.location }}<br>
+            <strong>Description:</strong> {{ rescue.description }}<br>
+            <strong>Time:</strong> {{ rescue.time }}
+        </div>
+    {% else %}
+        <p>No rescue requests.</p>
+    {% endfor %}
+
+
+
+
+    <h3>Add New Disaster Alert</h3>
+<form action="/add_alert" method="POST">
+  <label>Type:</label><br>
+  <input type="text" name="type" required><br>
+
+  <label>Description:</label><br>
+  <textarea name="description" required></textarea><br>
+
+  <!-- Optional: Allow district/state override -->
+  <input type="hidden" name="district" value="{{ user.district }}">
+  <input type="hidden" name="state" value="{{ user.state }}">
+
+  <button type="submit">Submit Alert</button>
+</form>
+<hr>
+
+
+
+
+
+
+</body>
+</html>
