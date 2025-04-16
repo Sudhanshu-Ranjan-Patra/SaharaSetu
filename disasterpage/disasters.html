@@ -121,12 +121,25 @@
               const severity = getSeverityLevel(description);
         
               const card = `
-                <div class="alert-card" data-type="${type}" data-severity="${severity}">
-                  <h3>${name}</h3>
-                  <p><strong>Type:</strong> ${type}</p>
-                  <p><strong>Date:</strong> ${date}</p>
-                  <p><strong>Severity:</strong> ${severity}</p>
-                  <p>${description}...</p>
+                <div class="disaster-data-card" data-severity="${severity}" data-type="${type}">
+                  <div class="header">
+                    <h3 class="title">${name}</h3>
+                    <span class="date">${date}</span>
+                  </div>
+                  <div class="content">
+                    <div class="data-group">
+                      <div class="data-label">Type</div>
+                      <div class="data-value">${type}</div>
+                    </div>
+                    <div class="data-group">
+                      <div class="data-label">Severity</div>
+                      <div class="data-value">${severity}</div>
+                    </div>
+                    <div class="data-group">
+                      <div class="data-label">Description</div>
+                      <div class="data-value">${description}...</div>
+                    </div>
+                  </div>
                 </div>
               `;
               container.innerHTML += card;
