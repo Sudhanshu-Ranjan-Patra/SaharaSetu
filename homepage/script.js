@@ -1,3 +1,24 @@
+
+fetch('/user')
+      .then(res => res.json())
+      .then(user => {
+        document.getElementById('profile-info').h3.innerHTML =
+          ` ${user.name}`;
+      
+        document.getElementById('profile-info').p.innerHTML =
+          ` ${user.email}`;
+      })
+      .catch(err => {
+        document.getElementById('profile-info').innerText = 'Please login first!';
+      });
+
+    function logout() {
+      window.location.href = '/logout';
+    }
+
+
+
+
 // Global variables
 let isRotating = true;
 let rotationInterval;

@@ -702,9 +702,10 @@ body {
 
 /* Hero Section Styles */
 .hero-section {
-    background-image: url('../image/globe2.webp');
-    background-size: cover;
-    background-position: bottom center;
+    background-image: url('../image/giphy.gif');
+    background-size:contain;
+    background-position: right ;
+    background-attachment: fixed;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
